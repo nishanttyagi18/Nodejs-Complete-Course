@@ -1,12 +1,16 @@
 const express = require("express");
-
+const expressHbs = require("express-handlebars");
 const app = express();
 
-app.set("view engine", "pug");
-app.set("views", "templates/views");
+app.engine(
+  "hbs",
+  expressHbs({ layoutsDir: "views/layouts/", extname: ".hbs" })
+);
+app.set("view engine", "hbs");
+app.set("views", "views");
 
 app.get("/shop", (req, res) => {
-  res.render("shop", { title: "MyShop", user: "Nishant" });
+  res.render("home", { title: "MYShop" });
 });
 
 app.get("/", (req, res) => {
